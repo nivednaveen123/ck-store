@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CK Fashion Store — Built for the Modern Indian Man</title>
+  <meta name="description" content="Premium linen & check shirts. Breathable. Perfect fit. Free delivery across India. COD available. 10,000+ happy customers.">
+  <meta name="theme-color" content="#0e0e0e">
+
+  <!-- Preloads -->
+  <link rel="preload" href="images/shirt_all.webp" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<!-- ══ ANNOUNCEMENT BAR ══════════════════════════════════════════ -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <span>🚚 Free Delivery Across India on Orders ₹999+</span><span class="dot">·</span>
+    <span>💰 Cash On Delivery Available</span><span class="dot">·</span>
+    <span>↩️ 7-Day Hassle-Free Returns</span><span class="dot">·</span>
+    <span>⭐ 10,000+ Happy Customers</span><span class="dot">·</span>
+    <span>🏭 Direct Factory Prices — No Middlemen</span><span class="dot">·</span>
+    <!-- repeat for loop -->
+    <span>🚚 Free Delivery Across India on Orders ₹999+</span><span class="dot">·</span>
+    <span>💰 Cash On Delivery Available</span><span class="dot">·</span>
+    <span>↩️ 7-Day Hassle-Free Returns</span><span class="dot">·</span>
+    <span>⭐ 10,000+ Happy Customers</span><span class="dot">·</span>
+    <span>🏭 Direct Factory Prices — No Middlemen</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ══ NAVBAR ════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-logo" onclick="showPage('home')">
+        <img src="images/logo.webp" alt="CK Fashion Store" class="logo-img" width="42" height="42" loading="eager">
+        <span class="logo-text">CK <span>Fashion</span></span>
+      </a>
+      <ul class="navbar-links">
+        <li><a href="#" class="active" onclick="showPage('home');setNavActive(this)">Home</a></li>
+        <li><a href="#" onclick="showPage('shop');setNavActive(this)">Shop</a></li>
+        <li><a href="#" onclick="showPage('product');setNavActive(this)">New Arrivals</a></li>
+        <li><a href="#" onclick="scrollToId('bestSellers');setNavActive(this)">Best Sellers</a></li>
+        <li><a href="#" onclick="scrollToId('footerContact');setNavActive(this)">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="cart-btn" onclick="openCart()" aria-label="Open cart">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE NAV ════════════════════════════════════════════════ -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMenu()">✕</button>
+  <a href="#" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="#" onclick="showPage('shop');toggleMenu()">Shop</a>
+  <a href="#" onclick="showPage('product');toggleMenu()">New Arrivals</a>
+  <a href="#" onclick="scrollToId('bestSellers');toggleMenu()">Best Sellers</a>
+  <a href="#" onclick="scrollToId('footerContact');toggleMenu()">Contact</a>
+</div>
+
+<!-- ══ CART DRAWER ═══════════════════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-head">
+    <div class="cart-head-title">Your Bag</div>
+    <button class="cart-close-btn" onclick="closeCart()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items-list" id="cartItemsList"></div>
+  <div class="cart-foot">
+    <div class="cart-free-shipping">🎉 You qualify for FREE delivery!</div>
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span style="color:var(--green);font-weight:600">FREE</span></div>
+    <div class="cart-total-final"><span>Total</span><span id="cartGrandTotal">₹0</span></div>
+    <button class="btn btn-primary btn-full btn-lg" onclick="closeCart();showPage('checkout')" style="margin-bottom:10px">
+      🔒 Secure Checkout
+    </button>
+    <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20place%20an%20order%20at%20CK%20Fashion%20Store" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">
+      💬 Order via WhatsApp
+    </a>
+    <div class="secure-note">🔒 Secure &amp; Encrypted Checkout</div>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  HOME PAGE                                                     -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<main class="page active" id="page-home">
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">New 2025 Collection</div>
+      <h1 class="hero-headline">
+        Built for the<br>
+        <em>Modern Indian</em><br>
+        Man.
+      </h1>
+      <p class="hero-subtext">
+        Premium linen &amp; check shirts that look sharp, feel breathable, and fit perfectly — designed for the Indian climate and the confident Indian man.
+      </p>
+      <div class="hero-cta-group">
+        <button class="btn btn-primary btn-lg" onclick="showPage('product')">Shop Now →</button>
+        <button class="btn btn-outline btn-lg" onclick="showPage('shop')">View Collection</button>
+      </div>
+      <div class="hero-trust-badges">
+        <div class="trust-badge">
+          <div class="trust-badge-icon">✓</div>
+          COD Available
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🚚</div>
+          Free Delivery
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">↩️</div>
+          7-Day Returns
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="images/shirt_all.webp" alt="CK Linen Check Shirts — Premium Indian Menswear" width="960" height="1280" fetchpriority="high">
+      <div class="hero-social-proof">
+        <div class="sp-avatars">
+          <div class="sp-avatar">A</div>
+          <div class="sp-avatar">R</div>
+          <div class="sp-avatar">K</div>
+        </div>
+        <div class="sp-text">
+          <strong>10,000+ Happy Customers</strong>
+          <span>Across India ★★★★★</span>
+        </div>
+      </div>
+      <div class="hero-badge-float" aria-hidden="true">NEW<br>DROP<br>2025</div>
+    </div>
+  </section>
+
+  <!-- ── COUNTDOWN SALE BANNER ─────────────────────────────────── -->
+  <div class="countdown-bar">
+    <div class="container">
+      <div class="countdown-inner">
+        <div class="countdown-label">⚡ Flash Sale Ends In:</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdHours">00</span>
+            <span class="countdown-sub">Hours</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdMins">00</span>
+            <span class="countdown-sub">Mins</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdSecs">00</span>
+            <span class="countdown-sub">Secs</span>
+          </div>
+        </div>
+        <button class="btn btn-gold" onclick="showPage('shop')" style="padding:10px 24px;font-size:12px">Grab the Deal →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SOCIAL PROOF BAR ──────────────────────────────────────── -->
+  <div class="proof-bar">
+    <div class="container">
+      <div class="proof-bar-inner">
+        <div class="proof-stat">
+          <span class="proof-stat-num">10K+</span>
+          <span>Happy Customers</span>
+        </div>
+        <div class="proof-stat">
+          <span class="proof-stat-num">124</span>
+          <span>Sold Today</span>
+        </div>
+        <div class="proof-stat">
+          <span class="proof-stat-num">4.9★</span>
+          <span>Average Rating</span>
+        </div>
+        <div class="proof-stat">
+          <span class="proof-stat-num">3 Day</span>
+          <span>Avg. Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ────────────────────────────────────────────── -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-eyebrow">Shop by Style</div>
+      <h2 class="section-title">Find Your Look</h2>
+      <div class="categories-grid">
+        <div class="cat-card" onclick="showPage('product')" role="button" tabindex="0">
+          <div class="cat-card-bg cat-checks">
+            <div class="cat-overlay"></div>
+            <div class="cat-info">
+              <span class="cat-name">Checks</span>
+              <span class="cat-count">12 Styles</span>
+              <div class="cat-arrow">→</div>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="showPage('shop')" role="button" tabindex="0">
+          <div class="cat-card-bg cat-linen">
+            <div class="cat-overlay"></div>
+            <div class="cat-info">
+              <span class="cat-name">Linen</span>
+              <span class="cat-count">8 Styles</span>
+              <div class="cat-arrow">→</div>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="showPage('shop')" role="button" tabindex="0">
+          <div class="cat-card-bg cat-denim">
+            <div class="cat-overlay"></div>
+            <div class="cat-info">
+              <span class="cat-name">Denim</span>
+              <span class="cat-count">10 Styles</span>
+              <div class="cat-arrow">→</div>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="showPage('shop')" role="button" tabindex="0">
+          <div class="cat-card-bg cat-casual">
+            <div class="cat-overlay"></div>
+            <div class="cat-info">
+              <span class="cat-name">Casual</span>
+              <span class="cat-count">20 Styles</span>
+              <div class="cat-arrow">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEW ARRIVALS ───────────────────────────────────────────── -->
+  <section class="products-section bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Just Dropped</div>
+          <h2 class="section-title">New Arrivals</h2>
+        </div>
+        <button class="btn btn-outline" onclick="showPage('shop')">View All →</button>
+      </div>
+      <div class="products-grid" id="newArrivalsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── BEST SELLERS ───────────────────────────────────────────── -->
+  <section class="products-section" id="bestSellers">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Customer Favourites</div>
+          <h2 class="section-title">Best Sellers</h2>
+        </div>
+        <button class="btn btn-outline" onclick="showPage('shop')">View All →</button>
+      </div>
+      <div class="products-grid" id="bestSellersGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── WHY CHOOSE US ─────────────────────────────────────────── -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-eyebrow" style="color:var(--gold)">Why CK Fashion</div>
+      <h2 class="section-title" style="color:var(--white)">The CK Difference</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.45);margin-top:12px">We don't just sell shirts. We sell confidence.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌿</div>
+          <div class="why-title">100% Premium Linen</div>
+          <p class="why-desc">Sourced from the finest linen mills. Breathable, soft, and gets better with every wash. Built to last years, not seasons.</p>
+          <span class="why-badge">Quality Certified</span>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏭</div>
+          <div class="why-title">Direct Factory Pricing</div>
+          <p class="why-desc">No middlemen. No inflated retail markup. You pay factory price — that's why ₹999 feels like a ₹2,500 shirt.</p>
+          <span class="why-badge">Best Value</span>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📐</div>
+          <div class="why-title">Perfect Indian Fit</div>
+          <p class="why-desc">Designed specifically for Indian body types. Not too baggy, not too slim. A fit that works whether you're at chai or a meeting.</p>
+          <span class="why-badge">Fit Guarantee</span>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🛡️</div>
+          <div class="why-title">No Shrink Guarantee</div>
+          <p class="why-desc">Pre-washed and pre-shrunk fabric. What you order is what you get — even after 50 washes. Or we replace it, free.</p>
+          <span class="why-badge">Guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-eyebrow">Real Reviews</div>
+      <h2 class="section-title">10,000+ Happy Men Can't Be Wrong</h2>
+      <p class="section-subtitle">Every review is from a real purchase. We never fake it.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="tcard-header">
+            <div class="tcard-avatar">👦</div>
+            <div>
+              <div class="tcard-name">Arjun Sharma</div>
+              <div class="tcard-meta">
+                <span class="tcard-city">📍 Delhi</span>
+                <span class="tcard-verified">✓ Verified Purchase</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">Wore this to a college farewell and three people asked me where I bought it. The linen is genuinely premium — not that thin cheap stuff. Fit is spot on for a slim guy like me.</p>
+          <div class="tcard-product">Bought: <strong>Red Check Linen Shirt — Size M</strong></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-header">
+            <div class="tcard-avatar">👨</div>
+            <div>
+              <div class="tcard-name">Rohan Mehta</div>
+              <div class="tcard-meta">
+                <span class="tcard-city">📍 Mumbai</span>
+                <span class="tcard-verified">✓ Verified Purchase</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">COD made it easy to try. Got it in 3 days, loved it instantly. The navy check is perfect — not too formal, not too casual. Ordered two more in different colours immediately.</p>
+          <div class="tcard-product">Bought: <strong>Navy Check Linen Shirt — Size L</strong></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-header">
+            <div class="tcard-avatar">🧑</div>
+            <div>
+              <div class="tcard-name">Karan Patel</div>
+              <div class="tcard-meta">
+                <span class="tcard-city">📍 Bangalore</span>
+                <span class="tcard-verified">✓ Verified Purchase</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">I was sceptical about buying clothes online but the 7-day return policy gave me confidence. Shirt arrived in great packaging. Fabric quality beats shirts I've bought for ₹2,500 from malls.</p>
+          <div class="tcard-product">Bought: <strong>Brown Check Linen Shirt — Size M</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSTAGRAM GRID ─────────────────────────────────────────── -->
+  <section class="instagram-section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px">
+        <div class="section-eyebrow" style="justify-content:center">As Worn By You</div>
+        <h2 class="section-title">@ck_fashion_store</h2>
+        <p class="section-subtitle">Tag us for a chance to be featured</p>
+      </div>
+      <div class="insta-grid">
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#2a1508">
+            <img src="images/shirt_all.webp" alt="CK Shirts Collection" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.9">
+          </div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#101830">
+            <img src="images/shirt_navy.webp" alt="Navy Check Shirt" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85">
+          </div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#2e1010">
+            <img src="images/shirt_red.webp" alt="Red Check Shirt" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85">
+          </div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#1a1208">
+            <img src="images/shirt_brown.webp" alt="Brown Check Shirt" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85">
+          </div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#1a1a1a;font-size:56px">👔</div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#281808;font-size:56px">🟫</div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-item-img" style="background:#081428;font-size:56px">🔷</div>
+          <div class="insta-hover-overlay">❤️</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <a href="https://www.instagram.com/ck_fashion_store" target="_blank" rel="noopener" class="btn btn-outline">Follow @ck_fashion_store</a>
+      </div>
+    </div>
+  </section>
+
+</main><!-- /page-home -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  PRODUCT PAGE                                                  -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<main class="page" id="page-product">
+  <div class="product-page">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#" onclick="showPage('shop')">Shop</a>
+        <span class="breadcrumb-sep">›</span>
+        <span aria-current="page">CK Linen Check Shirt</span>
+      </nav>
+
+      <div class="product-layout">
+
+        <!-- GALLERY (single column) -->
+        <div class="product-gallery">
+          <div class="gallery-main">
+            <img src="images/shirt_all.webp" alt="CK Linen Check Shirt" id="mainGalleryImg" width="800" height="1067" fetchpriority="high">
+          </div>
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" onclick="switchGallery(this,'images/shirt_all.webp')" role="button" aria-label="View all colours">
+              <img src="images/shirt_all.webp" alt="All Colours" loading="lazy" width="200" height="150">
+            </div>
+            <div class="gallery-thumb" onclick="switchGallery(this,'images/shirt_red.webp')" role="button" aria-label="Red Check">
+              <img src="images/shirt_red.webp" alt="Red Check" loading="lazy" width="200" height="150">
+            </div>
+            <div class="gallery-thumb" onclick="switchGallery(this,'images/shirt_navy.webp')" role="button" aria-label="Navy Check">
+              <img src="images/shirt_navy.webp" alt="Navy Check" loading="lazy" width="200" height="150">
+            </div>
+            <div class="gallery-thumb" onclick="switchGallery(this,'images/shirt_brown.webp')" role="button" aria-label="Brown Check">
+              <img src="images/shirt_brown.webp" alt="Brown Check" loading="lazy" width="200" height="150">
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT INFO PANEL -->
+        <div class="product-info">
+
+          <div class="product-brand">CK FASHION STORE · 2025 COLLECTION</div>
+          <h1 class="product-name">CK Linen Check Shirt</h1>
+          <p class="product-tagline">100% Premium Linen · Breathable · Perfect Indian Fit</p>
+
+          <!-- Rating + social proof -->
+          <div class="product-rating-row">
+            <span class="stars" aria-label="4.9 out of 5">★★★★★</span>
+            <span class="rating-text">4.9 (128 reviews)</span>
+            <span class="rating-sep">|</span>
+            <span class="sold-count">✓ 124 sold today</span>
+          </div>
+
+          <!-- Price -->
+          <div class="product-price-block">
+            <div class="product-price-row">
+              <span class="product-price-now">₹999</span>
+              <span class="product-price-was">₹1,799</span>
+              <span class="product-price-badge">Save 44%</span>
+            </div>
+            <p class="product-price-note">Inclusive of all taxes · Free delivery on orders above ₹999</p>
+          </div>
+
+          <!-- Live viewers -->
+          <div class="live-activity">
+            <div class="live-dot"></div>
+            <span><strong id="viewerCount">23</strong> people are viewing this right now</span>
+          </div>
+
+          <!-- Stock alert -->
+          <div class="stock-alert">
+            <span>⚡ Only 5 left in stock!</span>
+            <div class="stock-bar-track">
+              <div class="stock-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Colour -->
+          <div>
+            <div class="selector-label">
+              Colour: <span id="selectedColour">Red Check</span>
+            </div>
+            <div class="color-swatches">
+              <div class="color-swatch active" style="background:#8b2020" onclick="selectColour(this,'Red Check','images/shirt_red.webp')" role="button" tabindex="0" aria-label="Red Check" title="Red Check"></div>
+              <div class="color-swatch" style="background:#1a2a4a" onclick="selectColour(this,'Navy Check','images/shirt_navy.webp')" role="button" tabindex="0" aria-label="Navy Check" title="Navy Check"></div>
+              <div class="color-swatch" style="background:#4a2a1a" onclick="selectColour(this,'Brown Check','images/shirt_brown.webp')" role="button" tabindex="0" aria-label="Brown Check" title="Brown Check"></div>
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div>
+            <div class="selector-label">
+              Size
+              <span class="size-link" onclick="alert('S: Chest 36in | M: Chest 38in | L: Chest 40in | XL: Chest 42in')">Size Guide →</span>
+            </div>
+            <div class="size-grid" role="group" aria-label="Select size">
+              <button class="size-btn" onclick="selectSize(this)">S</button>
+              <button class="size-btn active" onclick="selectSize(this)">M</button>
+              <button class="size-btn" onclick="selectSize(this)">L</button>
+              <button class="size-btn" onclick="selectSize(this)">XL</button>
+              <button class="size-btn out" disabled aria-label="XXL Sold Out" title="Sold Out">XXL</button>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="atc-group">
+            <button class="btn btn-primary btn-full btn-lg" onclick="addToCart()">Add to Cart 🛒</button>
+            <button class="btn btn-gold btn-full btn-lg" onclick="addToCart();showPage('checkout')">⚡ Buy Now — Instant Checkout</button>
+            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20order%20the%20CK%20Linen%20Check%20Shirt.%20Please%20share%20details." target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">💬 Order on WhatsApp</a>
+          </div>
+
+          <!-- Value props -->
+          <div class="value-props">
+            <div class="value-prop">
+              <div class="vp-icon">🌿</div>
+              <div class="vp-text">
+                <strong>100% Premium Linen Fabric</strong>
+                <span>Breathable, soft, and perfect for Indian summers and year-round wear</span>
+              </div>
+            </div>
+            <div class="value-prop">
+              <div class="vp-icon">📐</div>
+              <div class="vp-text">
+                <strong>Perfect Indian Fit</strong>
+                <span>Designed for Indian body proportions — fits right out of the box</span>
+              </div>
+            </div>
+            <div class="value-prop">
+              <div class="vp-icon">🛡️</div>
+              <div class="vp-text">
+                <strong>No Shrink Guarantee</strong>
+                <span>Pre-washed fabric. Same size and feel after 50+ washes — guaranteed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery perks -->
+          <div class="delivery-perks">
+            <div class="perk"><span class="perk-icon">🚚</span> Free delivery on orders above ₹999 · Pan India</div>
+            <div class="perk"><span class="perk-icon">💰</span> Cash On Delivery available — zero risk</div>
+            <div class="perk"><span class="perk-icon">↩️</span> 7-day hassle-free returns · No questions asked</div>
+            <div class="perk"><span class="perk-icon">📦</span> Dispatched in 1–2 days · Delivered in 3–5 days</div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="product-faq">
+            <div class="faq-title">Common Questions</div>
+
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)">
+                How do I choose the right size?
+                <span class="faq-q-icon">+</span>
+              </button>
+              <div class="faq-a">
+                We recommend ordering your usual size. The fit is a relaxed regular — not too slim, not baggy. S fits chest 36in, M fits 38in, L fits 40in, XL fits 42in. If you're between sizes, size up.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)">
+                How long does delivery take?
+                <span class="faq-q-icon">+</span>
+              </button>
+              <div class="faq-a">
+                Orders are dispatched within 1–2 business days. Standard delivery is 3–5 days across India. Metro cities like Delhi, Mumbai, Bangalore usually receive in 2–3 days. You'll receive a tracking link via WhatsApp.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)">
+                What is the return policy?
+                <span class="faq-q-icon">+</span>
+              </button>
+              <div class="faq-a">
+                We offer a 7-day, no-questions-asked return policy. If you're not happy for any reason — wrong size, colour, or just changed your mind — WhatsApp us and we'll arrange a free pickup and full refund.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)">
+                Will the shirt shrink after washing?
+                <span class="faq-q-icon">+</span>
+              </button>
+              <div class="faq-a">
+                No. Our linen is pre-washed and pre-shrunk before cutting. You can machine wash it on a gentle cycle and it maintains its size and shape. That's our No Shrink Guarantee.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)">
+                Is Cash on Delivery available?
+                <span class="faq-q-icon">+</span>
+              </button>
+              <div class="faq-a">
+                Yes! COD is available across India. You can also pay via UPI (Google Pay, PhonePe, Paytm) or Credit/Debit card at checkout. All payments are 100% secure.
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /product-info -->
+      </div><!-- /product-layout -->
+
+      <!-- Product Reviews -->
+      <div style="margin-top:80px">
+        <div class="section-eyebrow">Customer Reviews</div>
+        <h2 class="section-title" style="margin-bottom:40px">What Buyers Say</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="tcard-header"><div class="tcard-avatar">👦</div><div><div class="tcard-name">Arjun S.</div><div class="tcard-meta"><span class="tcard-city">📍 Delhi · Size M</span><span class="tcard-verified">✓ Verified</span></div></div></div>
+            <div class="tcard-stars">★★★★★</div>
+            <p class="tcard-text">The red check is fire. Premium linen, perfect fit. Got tons of compliments on first wear.</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="tcard-header"><div class="tcard-avatar">👨</div><div><div class="tcard-name">Rohan M.</div><div class="tcard-meta"><span class="tcard-city">📍 Mumbai · Size L</span><span class="tcard-verified">✓ Verified</span></div></div></div>
+            <div class="tcard-stars">★★★★★</div>
+            <p class="tcard-text">Navy check is exactly as shown. Delivered in 3 days via COD. Already ordered 2 more colours!</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="tcard-header"><div class="tcard-avatar">🧑</div><div><div class="tcard-name">Karan P.</div><div class="tcard-meta"><span class="tcard-city">📍 Bangalore · Size M</span><span class="tcard-verified">✓ Verified</span></div></div></div>
+            <div class="tcard-stars">★★★★★</div>
+            <p class="tcard-text">Brown check with white chinos — absolutely elite look. Better quality than ₹2,500 mall shirts.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main><!-- /page-product -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  SHOP PAGE                                                     -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<main class="page" id="page-shop">
+  <div class="shop-banner">
+    <div class="section-eyebrow" style="justify-content:center">CK Fashion Store</div>
+    <h1 class="section-title">All Products</h1>
+    <p class="section-subtitle">Premium quality · Factory prices · Free delivery</p>
+  </div>
+  <section style="padding:60px 0">
+    <div class="container">
+      <div class="shop-filter-bar" role="group" aria-label="Filter products">
+        <button class="filter-chip active" onclick="filterProducts('all',this)">All Products</button>
+        <button class="filter-chip" onclick="filterProducts('checks',this)">Checks</button>
+        <button class="filter-chip" onclick="filterProducts('linen',this)">Linen</button>
+        <button class="filter-chip" onclick="filterProducts('denim',this)">Denim</button>
+        <button class="filter-chip" onclick="filterProducts('casual',this)">Casual</button>
+      </div>
+      <div class="products-grid" id="shopGrid"></div>
+    </div>
+  </section>
+</main><!-- /page-shop -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  CHECKOUT PAGE                                                 -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<main class="page" id="page-checkout">
+  <div class="checkout-page">
+    <div class="container">
+      <div class="section-eyebrow">🔒 Secure Checkout</div>
+      <h1 class="section-title" style="margin-bottom:48px">Complete Your Order</h1>
+
+      <div class="checkout-grid">
+        <!-- FORM SIDE -->
+        <div>
+          <div class="checkout-section-title">Delivery Details</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First Name</label>
+              <input class="form-input" id="fname" type="text" placeholder="Arjun" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last Name</label>
+              <input class="form-input" id="lname" type="text" placeholder="Sharma" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input class="form-input" id="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" id="email" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">Delivery Address</label>
+            <input class="form-input" id="address" type="text" placeholder="Flat/House No, Building, Street" autocomplete="street-address">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="city">City</label>
+              <input class="form-input" id="city" type="text" placeholder="Delhi" autocomplete="address-level2">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pin">Pincode</label>
+              <input class="form-input" id="pin" type="text" placeholder="110001" inputmode="numeric" autocomplete="postal-code">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="state">State</label>
+            <select class="form-input" id="state" autocomplete="address-level1">
+              <option value="">Select State</option>
+              <option>Delhi</option><option>Maharashtra</option><option>Karnataka</option>
+              <option>Tamil Nadu</option><option>Gujarat</option><option>Rajasthan</option>
+              <option>Uttar Pradesh</option><option>West Bengal</option><option>Telangana</option>
+              <option>Punjab</option><option>Haryana</option><option>Kerala</option>
+            </select>
+          </div>
+
+          <div class="checkout-section-title" style="margin-top:36px">Payment Method</div>
+          <div class="payment-opts" role="radiogroup">
+            <label class="payment-opt active" onclick="selectPayment(this)">
+              <input type="radio" name="pay" checked>
+              <div><div class="pay-opt-title">UPI Payment</div><div class="pay-opt-sub">Google Pay · PhonePe · Paytm · BHIM</div></div>
+              <span class="pay-opt-icon">📱</span>
+            </label>
+            <label class="payment-opt" onclick="selectPayment(this)">
+              <input type="radio" name="pay">
+              <div><div class="pay-opt-title">Credit / Debit Card</div><div class="pay-opt-sub">Visa · Mastercard · RuPay</div></div>
+              <span class="pay-opt-icon">💳</span>
+            </label>
+            <label class="payment-opt" onclick="selectPayment(this)">
+              <input type="radio" name="pay">
+              <div><div class="pay-opt-title">Cash On Delivery</div><div class="pay-opt-sub">Pay safely when your order arrives</div></div>
+              <span class="pay-opt-icon">💰</span>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-full btn-lg" style="margin-top:24px" onclick="placeOrder()">
+            🔒 Place Order Securely →
+          </button>
+          <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn btn-whatsapp btn-full" style="margin-top:10px">
+            💬 Order via WhatsApp Instead
+          </a>
+
+          <div class="payment-icons-row">
+            <span class="pay-logo">UPI</span>
+            <span class="pay-logo">VISA</span>
+            <span class="pay-logo">MC</span>
+            <span class="pay-logo">RUPAY</span>
+            <span class="pay-logo">COD</span>
+          </div>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div>
+          <div class="order-summary-box">
+            <div class="checkout-section-title">Order Summary</div>
+            <div id="checkoutItems"></div>
+            <hr class="order-divider">
+            <div class="order-row"><span>Subtotal</span><span id="checkoutSub">₹0</span></div>
+            <div class="order-row"><span>Delivery</span><span style="color:var(--green);font-weight:600">FREE</span></div>
+            <div class="order-row"><span>Discount</span><span style="color:var(--red)">Applied ✓</span></div>
+            <hr class="order-divider">
+            <div class="order-total"><span>Total</span><span id="checkoutTotal">₹0</span></div>
+            <div class="trust-block" style="margin-top:20px">
+              <div class="trust-block-title">🔒 Safe &amp; Secure</div>
+              <div class="trust-block-sub">Your payment &amp; personal info are 100% encrypted and protected.</div>
+            </div>
+            <div class="trust-block" style="margin-top:12px;border-left-color:var(--green);background:rgba(26,122,74,.06)">
+              <div class="trust-block-title" style="color:var(--green)">✓ Free Delivery Included</div>
+              <div class="trust-block-sub">3–5 business days · Pan India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main><!-- /page-checkout -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  SUCCESS PAGE                                                  -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<main class="page" id="page-success">
+  <div class="success-page">
+    <div>
+      <div class="success-icon">✅</div>
+      <div class="section-eyebrow" style="justify-content:center;margin-bottom:12px">Order Confirmed</div>
+      <h1 class="success-title">Thank You!</h1>
+      <p class="success-text">Your order is placed! You'll receive a WhatsApp confirmation in minutes with your tracking details. Your CK shirt is on its way. 🎉</p>
+      <div class="success-actions">
+        <button class="btn btn-primary btn-lg" onclick="showPage('home')">Continue Shopping</button>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Track on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</main><!-- /page-success -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                        -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<footer class="footer" id="footerContact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="images/logo.webp" alt="CK Fashion Store" class="footer-logo-img" loading="lazy" width="48" height="48">
+          <span class="footer-logo-text">CK <span>Fashion</span></span>
+        </div>
+        <p class="footer-desc">Premium linen &amp; check shirts for the modern Indian man. Quality you can feel. Prices that make sense. Delivered to your door, anywhere in India.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/ck_fashion_store" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">💬</a>
+          <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="#" onclick="showPage('home')">Home</a>
+          <a href="#" onclick="showPage('shop')">Shop All</a>
+          <a href="#" onclick="showPage('product')">New Arrivals</a>
+          <a href="#" onclick="scrollToId('bestSellers')">Best Sellers</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Policies</div>
+        <div class="footer-links">
+          <a href="#" onclick="alert('Free delivery on orders above ₹999 across India. 3–5 business days.')">Shipping Policy</a>
+          <a href="#" onclick="alert('7-day hassle-free returns. Items must be unused and in original packaging. WhatsApp us to initiate.')">Return Policy</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Size Guide</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-list">
+          <div class="fc-row"><span>📍</span><span>New Delhi, India</span></div>
+          <div class="fc-row"><span>📞</span><a href="tel:+919876543210" style="color:inherit">+91 98765 43210</a></div>
+          <div class="fc-row"><span>📧</span><a href="mailto:hello@ckfashionstore.in" style="color:inherit">hello@ckfashionstore.in</a></div>
+          <div class="fc-row"><span>💬</span><span>WhatsApp Orders 24/7</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 CK Fashion Store. All rights reserved.</div>
+      <div class="footer-pay">
+        <span class="pay-badge">UPI</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">MC</span>
+        <span class="pay-badge">RUPAY</span>
+        <span class="pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20shop%20at%20CK%20Fashion%20Store" class="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- Deferred JS -->
+<script src="js/main.js" defer></script>
+
+</body>
+</html>
